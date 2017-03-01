@@ -10,8 +10,7 @@
     "make": "electron-forge make",
     "lint": "standard"
   },
-  "keywords": [],
-  "author": "matt",
+  "author": "Matt Watson",
   "license": "MIT",
   "config": {
     "forge": {
