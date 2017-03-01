@@ -1,0 +1,19 @@
+{
+  "version": "1",
+  "timestamp": "2016-07-28T18:37:07.061Z",
+  "subscription_id": "c861d13695e0ef0ed6055cb2a199bc7e88e6232984bf0e0fa4ae5d0c67a845c2",
+  "xapian_databases": [
+    {
+      "path": "e87ac3f0-54f1-11e6-b853-ff11cd9524f9.shard",
+      "offset": 59891328
+    }
+  ],
+  "shards": [
+    {
+      "path": "e87ac3f0-54f1-11e6-b853-ff11cd9524f9.shard",
+      "sha256_csum": "8a1bf6be1413a75251ccdbbea55983a587b578535a671a8336c54ab1bbda66ed",
+      "download_uri": "https://com-endless--cloud-soma-prod--shared-shard.s3-us-west-2.amazonaws.com/e87ac3f0-54f1-11e6-b853-ff11cd9524f9.shard",
+      "published_timestamp": "2016-07-28T18:37:07.057Z"
+    }
+  ]
+}
