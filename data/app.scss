@@ -1,0 +1,30 @@
+@import 'reset';
+@import 'icon-font';
+
+@import 'components/articlehtml';
+@import 'components/card';
+@import 'components/homepage';
+@import 'components/searchentry';
+@import 'components/searchresults';
+@import 'components/topbar';
+
+html,
+body,
+#root,
+.app {
+  height: 100%;
+  width: 100%;
+  margin: 0px;
+  padding: 0px;
+}
+
+.app {
+  display: flex;
+  flex-direction: column;
+}
+
+.pages {
+  flex-grow: 1;
+  overflow: auto;
+  background-image: url('assets/background.jpg');
+}

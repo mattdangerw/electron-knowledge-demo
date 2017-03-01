@@ -1,0 +1,18 @@
+.search-results {
+  .search-results-error,
+  .search-results-no-results {
+    color: white;
+    font-size: 55px;
+    font-weight: bold;
+    padding: 1.0em;
+    text-shadow: 2px 6px 6px transparentize(black, 1 - 0.20);
+  }
+
+  .search-results-list {
+    display: flex;
+    flex-wrap: wrap;
+    & > * {
+      margin: 10px;
+    }
+  }
+}

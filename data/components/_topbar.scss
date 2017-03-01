@@ -1,0 +1,40 @@
+.topbar {
+  background-image: linear-gradient(to bottom, #464646, #1e1e1e);
+  height: 36px;
+  min-height: 36px;
+  -webkit-app-region: drag;
+  padding-left: 3px;
+  padding-right: 3px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+
+  button {
+    -webkit-app-region: no-drag;
+    font-size: 16px;
+    border-radius: 2px;
+    color: #8c8c8c;
+    padding: 4px;
+    margin: 0px 4px;
+  }  
+
+  .icon {
+    height: 16px;
+  }  
+
+  button:hover {
+    color: #dcdcdc;
+    background-image: linear-gradient(to top,
+      rgb(68, 68, 68),
+      rgb(108, 108, 108) 95%,
+      rgb(131, 131, 131) 98%);
+  }  
+
+  button:active {
+    color: #787878;
+    background-image: linear-gradient(to top,
+      rgb(67, 67, 67),
+      rgb(71, 71, 71) 95%,
+      rgb(79, 79, 79) 98%);
+  }
+}
