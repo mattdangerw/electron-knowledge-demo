@@ -2,12 +2,18 @@ import { app, BrowserWindow, protocol } from 'electron'
 import installExtension, { REACT_DEVELOPER_TOOLS } from 'electron-devtools-installer'
 import { shittyloop, Engine } from 'eos-knowledge-content'
 import { registerService } from 'dbus'
+import yargs from 'yargs'
+
+const argv = yargs
+  .help('help')
+  .boolean('i')
+  .describe('i', 'Open the inspector')
+  .alias('i', 'inspector')
+  .argv
 
 // Keep a global reference of the window object, if you don't, the window will
 // be closed automatically when the JavaScript object is garbage collected.
 let mainWindow
-
-const isDevMode = process.execPath.match(/[\\/]electron/)
 
 const createWindow = async () => {
   // Create the browser window.
@@ -20,7 +26,7 @@ const createWindow = async () => {
   mainWindow.loadURL(`file://${__dirname}/index.html`)
 
   // Open the DevTools.
-  if (isDevMode) {
+  if (argv.inspector) {
     await installExtension(REACT_DEVELOPER_TOOLS)
     mainWindow.webContents.openDevTools()
   }
