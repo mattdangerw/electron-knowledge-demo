@@ -31,6 +31,12 @@ const createWindow = async () => {
     // when you should delete the corresponding element.
     mainWindow = null
   })
+
+  mainWindow.webContents.on('did-finish-load', () => {
+    mainWindow.webContents.on('will-navigate', (event, url) => {
+      event.preventDefault()
+    })
+  })
 }
 
 // This method will be called when Electron has finished
