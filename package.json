@@ -15,29 +15,28 @@
   "config": {
     "forge": {
       "make_targets": {
-        "win32": [
-          "squirrel"
-        ],
-        "darwin": [
-          "zip"
-        ],
         "linux": [
-          "deb",
-          "rpm"
+          "flatpak"
         ]
       },
       "electronPackagerConfig": {},
-      "electronWinstallerConfig": {
-        "name": "electron_knowledge_demo"
-      },
-      "electronInstallerDebian": {},
-      "electronInstallerRedhat": {},
-      "github_repository": {
-        "owner": ""
-      },
-      "windowsStoreConfig": {
-        "packageName": "",
-        "name": "electronknowledgedemo"
+      "electronInstallerFlatpak": {
+        "id": "com.endlessm.electron.myths.en",
+        "base": "com.endlessm.ElectronKnowledgeBaseApp",
+        "finishArgs": [
+          "--socket=x11",
+          "--share=ipc",
+          "--device=dri",
+          "--socket=pulseaudio",
+          "--share=network",
+          "--talk-name=org.freedesktop.Notifications",
+          "--system-talk-name=com.endlessm.Metrics",
+          "--filesystem=/tmp",
+          "--filesystem=~/.local/share",
+          "--filesystem=~/.local/share/flatpak/app/com.endlessm.electron.myths.en:ro",
+          "--filesystem=/var/lib/flatpak/app/com.endlessm.electron.myths.en:ro",
+          "--filesystem=/var/endless-extra/flatpak/app/com.endlessm.electron.myths.en:ro"
+        ]
       }
     }
   },
