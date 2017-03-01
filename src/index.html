@@ -3,15 +3,62 @@
 <head>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
 </head>
-<body style="overflow: hidden; background-color: rgba(0,0,0,0); margin: 0" >
-  <div id="App"></div>
+<body>
+  <div id="root"></div>
 </body>
 
 <script type="text/jsx">
 import React from 'react';
-import ReactDOM from 'react-dom';
-import App from './app';
+import { render } from 'react-dom'
+import { Provider } from 'react-redux'
+import { createStore } from 'redux'
+import knowledgeApp from './reducers'
+import App from './components/app'
+import { ipcRenderer } from 'electron'
+import { remote } from 'electron'
+const { Engine, QueryObject } = remote.require('eos-knowledge-content')
 
-ReactDOM.render(<App />, document.getElementById('App'));
+const runQuery = async (query, dispatch) => {
+  const engine = Engine.get_default()
+  const queryObj = new QueryObject({
+    query,
+    limit: 10
+  })
+  const results = await engine.query(queryObj)
+  dispatch({
+    type: 'SEARCH_RESULTS_READY',
+    query,
+    results
+  })
+}
+
+let store = createStore(
+  knowledgeApp,
+  window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__()
+)
+ipcRenderer.on('LoadItem', async (event, id, query, timestamp) => {
+  const model = await Engine.get_default().get_object(id)
+  store.dispatch({
+    type: 'DBUS_LOAD_ITEM',
+    model,
+    query,
+    timestamp
+  })
+})
+ipcRenderer.on('LoadQuery', (event, query, timestamp) => {
+  store.dispatch({
+    type: 'DBUS_LOAD_QUERY',
+    query,
+    timestamp
+  })
+  runQuery(query, (action) => store.dispatch(action))
+})
+
+render(
+  <Provider store={store}>
+    <App />
+  </Provider>,
+  document.getElementById('root')
+)
 </script>
 </html>
