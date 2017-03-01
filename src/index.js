@@ -18,9 +18,13 @@ let mainWindow
 const createWindow = async () => {
   // Create the browser window.
   mainWindow = new BrowserWindow({
-    width: 800,
-    height: 600,
+    title: 'Myths and Legends',
+    frame: false,
+    show: false
   })
+  mainWindow.maximize()
+  mainWindow.setMenu(null)
+  mainWindow.show()
 
   // and load the index.html of the app.
   mainWindow.loadURL(`file://${__dirname}/index.html`)
