@@ -8,7 +8,7 @@
     "start": "electron-forge start",
     "package": "electron-forge package",
     "make": "electron-forge make",
-    "lint": "echo \"No linting configured\""
+    "lint": "standard"
   },
   "keywords": [],
   "author": "matt",
@@ -52,6 +52,7 @@
     "babel-plugin-transform-async-to-generator": "^6.22.0",
     "babel-preset-env": "^1.1.8",
     "babel-preset-react": "^6.22.0",
-    "electron-prebuilt-compile": "1.4.15"
+    "electron-prebuilt-compile": "1.4.15",
+    "standard": "^8.6.0"
   }
 }
