@@ -1,0 +1,3 @@
+[D-BUS Service]
+Name=com.endlessm.electron.myths.en
+Exec=electron-knowledge-demo

@@ -19,7 +19,11 @@
           "flatpak"
         ]
       },
-      "electronPackagerConfig": {},
+      "electronPackagerConfig": {
+        "ignore": [
+          "/content/"
+        ]
+      },
       "electronInstallerFlatpak": {
         "id": "com.endlessm.electron.myths.en",
         "base": "com.endlessm.ElectronKnowledgeBaseApp",
@@ -36,6 +40,12 @@
           "--filesystem=~/.local/share/flatpak/app/com.endlessm.electron.myths.en:ro",
           "--filesystem=/var/lib/flatpak/app/com.endlessm.electron.myths.en:ro",
           "--filesystem=/var/endless-extra/flatpak/app/com.endlessm.electron.myths.en:ro"
+        ],
+        "files": [
+          [
+            "content",
+            "/share"
+          ]
         ]
       }
     }
