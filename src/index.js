@@ -1,5 +1,6 @@
-import { app, BrowserWindow } from 'electron'
+import { app, BrowserWindow, protocol } from 'electron'
 import installExtension, { REACT_DEVELOPER_TOOLS } from 'electron-devtools-installer'
+import { shittyloop, Engine } from 'eos-knowledge-content'
 import { registerService } from 'dbus'
 
 // Keep a global reference of the window object, if you don't, the window will
@@ -39,6 +40,20 @@ const createWindow = async () => {
   })
 }
 
+const setupEknProtocol = () => {
+  // Setup knowledge content
+  shittyloop()
+  const engine = Engine.get_default()
+  engine.default_app_id = 'com.endlessm.electron.myths.en'
+
+  protocol.registerBufferProtocol('ekn', (request, callback) => {
+    const { mime_type, data } = engine.get_domain().read_uri(request.url)
+    callback({ mimeType: mime_type, data })
+  }, (error) => {
+    if (error) console.error('Failed to register ekn protocol')
+  })
+}
+
 let service
 
 const setupDBus = () => {
@@ -71,6 +86,7 @@ const setupDBus = () => {
 // initialization and is ready to create browser windows.
 // Some APIs can only be used after this event occurs.
 app.on('ready', () => {
+  setupEknProtocol()
   createWindow()
   // Wait till the window has finished loading before registering on the bus, so
   // we can send messages straight over to the browser process.
